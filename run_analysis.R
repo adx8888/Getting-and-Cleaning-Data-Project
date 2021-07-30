@@ -1,6 +1,7 @@
 # Loading packages
 library(tidyverse)
 
+
 # Download data
 link <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
 download.file(link, "Coursera_DS3_Final.zip", "libcurl")
@@ -38,18 +39,18 @@ data$code <- activities[data$code, 2]
 # Step 4: Appropriately labels the data set with descriptive variable names.
 
 names(data)[2] = "activity"
-names(data)<-gsub("Acc", "Accelerometer", names(data))
-names(data)<-gsub("Gyro", "Gyroscope", names(data))
-names(data)<-gsub("BodyBody", "Body", names(data))
-names(data)<-gsub("Mag", "Magnitude", names(data))
-names(data)<-gsub("^t", "Time", names(data))
-names(data)<-gsub("^f", "Frequency", names(data))
-names(data)<-gsub("tBody", "TimeBody", names(data))
-names(data)<-gsub("-mean()", "Mean", names(data), ignore.case = TRUE)
-names(data)<-gsub("-std()", "STD", names(data), ignore.case = TRUE)
-names(data)<-gsub("-freq()", "Frequency", names(data), ignore.case = TRUE)
-names(data)<-gsub("angle", "Angle", names(data))
-names(data)<-gsub("gravity", "Gravity", names(data))
+names(data) <- gsub("Acc", "Accelerometer", names(data))
+names(data) <- gsub("Gyro", "Gyroscope", names(data))
+names(data) <- gsub("BodyBody", "Body", names(data))
+names(data) <- gsub("Mag", "Magnitude", names(data))
+names(data) <- gsub("^t", "Time", names(data))
+names(data) <- gsub("^f", "Frequency", names(data))
+names(data) <- gsub("tBody", "TimeBody", names(data))
+names(data) <- gsub("-mean()", "Mean", names(data), ignore.case = TRUE)
+names(data) <- gsub("-std()", "STD", names(data), ignore.case = TRUE)
+names(data) <- gsub("-freq()", "Frequency", names(data), ignore.case = TRUE)
+names(data) <- gsub("angle", "Angle", names(data))
+names(data) <- gsub("gravity", "Gravity", names(data))
 
 # Step 5: From the data set in step 4, creates a second, independent tidy data set with the average of each variable for each activity and each subject.
 
@@ -57,4 +58,4 @@ tidydata <- data %>%
         group_by(subject, activity) %>%
         summarise_all(funs(mean))
 
-write.table(tidydata, "tidydata.txt", row.name=FALSE)
+write.table(tidydata, "tidydata.txt", row.name = FALSE)
